@@ -55,7 +55,8 @@ pip install -r requirements.txt
 ```
 
 ### Preparación de Datos
-El proyecto utiliza la estructura de datos del modelo Progressive Transformer.
+El proyecto utiliza la estructura de datos del modelo [Progressive Transformer](https://github.com/BenSaunders27/ProgressiveTransformersSLP.git)
+
 ```bash
 Extraer los datos en la ruta: ./Data/P2014T_Ben/
 ```
