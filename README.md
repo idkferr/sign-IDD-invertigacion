@@ -62,13 +62,19 @@ Extraer los datos en la ruta: ./Data/P2014T_Ben/
 ```
 Asegurar que los archivos de vocabulario y metadatos (.csv) estén en: ./Configs/
 
-### Entrenamiento
+### Training
 Para iniciar el proceso de entrenamiento con detección automática de hardware:
 
 ```bash
 
 python __main__.py train ./Configs/Sign-IDD.yaml
 ```
+
+### Inference
+```bash
+python __main__.py test ./Configs/Sign-IDD.yaml
+```
+
 ### Problemas Solucionados
 Incompatibilidad de GPU: El código original fallaba en ausencia de drivers CUDA. Se implementó una lógica de selección jerárquica: DirectML > CUDA > CPU.
 
