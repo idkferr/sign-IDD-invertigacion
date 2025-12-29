@@ -35,6 +35,21 @@ Para lograr la estabilidad del sistema en entornos Windows con GPUs no-NVIDIA, s
 
 
 ---
+## Descripción Detallada de Módulos
+
+### `training.py` (Gestor de Entrenamiento)
+Es el núcleo operativo que coordina el aprendizaje. Implementa la clase **TrainManager** para manejar la continuidad mediante checkpoints (.ckpt) y el bucle principal `train_and_validate`. Utiliza **DTW (Dynamic Time Warping)** para evaluar la alineación de poses, superando las limitaciones del MSE en secuencias temporales.
+
+### `Model.py` (Arquitectura Principal)
+Define la estructura que traduce glosas a poses 3D. 
+* **Flujo:** Fuente (Gloss) → Embeddings → Encoder Transformer → Módulo ACD (Difusión) → Poses 3D.
+* Procesa la pérdida enfocándose en las dimensiones de pose, ignorando los contadores de frames para una mayor precisión biomecánica.
+
+### `ACD.py` (Difusión Condicional)
+Implementa el módulo **Autoencoder with Conditional Diffusion**. 
+* **Entrenamiento:** Añade ruido controlado a las poses (Forward).
+* **Inferencia:** Utiliza muestreo **DDIM** para remover el ruido y generar movimiento fluido condicionado por la glosa.
+* Prioriza el dispositivo DirectML para aprovechar la aceleración por hardware en GPUs no-NVIDIA.
 
 ##  Configuración del Entorno
 
